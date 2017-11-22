@@ -39,6 +39,9 @@ public class ViewUtils
         }
         while (tmp != decorView && tmp != parent)
         {
+            if (tmp == null) {
+                break;
+            }
             tmp.getHitRect(tmpRect);
             if (!tmp.getClass().equals(FRAGMENT_CON))
             {
