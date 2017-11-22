@@ -24,7 +24,7 @@ ext {
     bintrayName = 'CottageHighlight'
     publishedGroupId = 'com.isanwenyu.cottage.highlight'
     libraryName = 'CottageHighlight'
-    artifact = 'cottagehighlight'
+    artifact = 'CottageHighlight'
     libraryDescription = 'One for Android app highlights the directivity function of library'
     siteUrl = 'https://github.com/AttackOnDobby/Highlight'
     gitUrl = 'https://github.com/AttackOnDobby/Highlight.git'
