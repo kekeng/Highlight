@@ -150,28 +150,33 @@ public class HightLightView extends FrameLayout
 
     private void buildMask()
     {
-        recycleBitmap(mMaskBitmap);
-        mMaskBitmap = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(), Bitmap.Config.ARGB_4444);
-        Canvas canvas = new Canvas(mMaskBitmap);
-        canvas.drawColor(maskColor);
-        mPaint.setXfermode(MODE_DST_OUT);
-        mHighLight.updateInfo();
+        try {
+            recycleBitmap(mMaskBitmap);
+            mMaskBitmap = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(), Bitmap.Config.ARGB_4444);
+            Canvas canvas = new Canvas(mMaskBitmap);
+            canvas.drawColor(maskColor);
+            mPaint.setXfermode(MODE_DST_OUT);
+            mHighLight.updateInfo();
 
-        recycleBitmap(mLightBitmap);
-        mLightBitmap = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(), Bitmap.Config.ARGB_4444);
+            recycleBitmap(mLightBitmap);
+            mLightBitmap = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(), Bitmap.Config.ARGB_4444);
 
-        if(isNext)//如果是next模式添加每个提示布局的背景形状
-        {
-            //添加当前提示布局的高亮形状背景
-            addViewEveryTipShape(mViewPosInfo);
-        }else
-        {
-            for (HighLight.ViewPosInfo viewPosInfo : mViewRects)
+            if(isNext)//如果是next模式添加每个提示布局的背景形状
             {
-                addViewEveryTipShape(viewPosInfo);
+                //添加当前提示布局的高亮形状背景
+                addViewEveryTipShape(mViewPosInfo);
+            }else
+            {
+                for (HighLight.ViewPosInfo viewPosInfo : mViewRects)
+                {
+                    addViewEveryTipShape(viewPosInfo);
+                }
             }
+            canvas.drawBitmap(mLightBitmap,0,0,mPaint);
+        } catch (OutOfMemoryError e) {
+            System.gc();
+            System.runFinalization();
         }
-        canvas.drawBitmap(mLightBitmap,0,0,mPaint);
     }
 
     /**
