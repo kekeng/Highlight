@@ -436,8 +436,6 @@ public class HighLight implements HighLightInterface, ViewTreeObserver.OnGlobalL
      */
     private static final class ListenersHandler extends Handler {
         private WeakReference<HighLightInterface> mHighLightInterface;
-        private HightLightView hightLightView;
-        private View anchorView;
 
         public ListenersHandler(HighLight highLight) {
             mHighLightInterface = new WeakReference<HighLightInterface>(highLight);
@@ -445,8 +443,8 @@ public class HighLight implements HighLightInterface, ViewTreeObserver.OnGlobalL
 
         @Override
         public void handleMessage(Message msg) {
-            hightLightView = mHighLightInterface.get() == null ? null : mHighLightInterface.get().getHightLightView();
-            anchorView = mHighLightInterface.get() == null ? null : mHighLightInterface.get().getAnchor();
+            HightLightView hightLightView = mHighLightInterface.get() == null ? null : mHighLightInterface.get().getHightLightView();
+            View anchorView = mHighLightInterface.get() == null ? null : mHighLightInterface.get().getAnchor();
             switch (msg.what) {
                 case CLICK:
                     ((HighLightInterface.OnClickCallback) msg.obj).onClick();
